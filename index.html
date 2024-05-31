@@ -10,6 +10,7 @@
             border: 1px solid black;
             width: 400px;
             padding: 10px;
+            box-sizing: border-box;
         }
         .table, td, th {
             border: 1px solid black;
@@ -25,7 +26,6 @@
             padding: 1px;
             text-align: left;
             font-size: 20px;
-            
         }
         .container {
             width: 100%;
@@ -55,23 +55,44 @@
         }
         #detailsTable {
             display: none;
-            width:400px;
+            width: 400px;
         }
-        .main table td input{
+        .main table td input {
             width: 97%;
-            padding:3px;
-            border:none;
+            padding: 3px;
+            border: none;
             font-size: 20px;
         }
-        option
-        {
+        option {
             font-size: 20px;
         }
-        body
-        {
+        body {
             background-color: aqua;
         }
 
+        @media (max-width: 600px) {
+            .main {
+                width: 100%;
+                padding: 5px;
+            }
+            th, td {
+                font-size: 16px;
+            }
+            .main table td input {
+                font-size: 16px;
+            }
+            #select option {
+                font-size: 16px;
+            }
+            .btn {
+                font-size: 16px;
+                height: 30px;
+                padding: 5px;
+            }
+            #detailsTable {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -159,7 +180,7 @@
             cell5.innerHTML = email;
             cell6.innerHTML = `<button onclick="deleteRow(this)">Delete</button>`;
 
-            // Show the table if it was hidden
+            
             detailsTable.style.display = 'table';
         }
 
