@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            background-color: white;
+            border: 1px solid black;
+            width: 400px;
+            padding: 10px;
+        }
+        .table, td, th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        table {
+            position: relative;
+            top: 10px;
+            bottom: 10px;
+            width: 100%;
+        }
+        th, td {
+            padding: 1px;
+            text-align: left;
+            font-size: 20px;
+            
+        }
+        .container {
+            width: 100%;
+        }
+        #select {
+            width: 100%;
+        }
+        #select option{
+            border:none;
+            padding: 3px;
+            font-size: 20px;
+        }
+        #save {
+            width: 40%;
+        }
+        .btn {
+            width: 95%;
+            border: 1px solid black;
+            background-color: aquamarine;
+            height: 25px;
+            cursor: pointer;
+            padding: 3px;
+            font-size: 20px;
+        }
+        .details {
+            margin-top: 20px;
+        }
+        #detailsTable {
+            display: none;
+            width:400px;
+        }
+        .main table td input{
+            width: 97%;
+            padding:3px;
+            border:none;
+            font-size: 20px;
+        }
+        option
+        {
+            font-size: 20px;
+        }
+        body
+        {
+            background-color: aqua;
+        }
+
+    </style>
+</head>
+<body>
+    <center>
+        <div class="container">
+            <h1>Student form</h1>
+            <div class="main">                    
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <td><input type="text" id="name"></td>
+                    </tr>
+                    <tr>
+                        <th>Age</th>
+                        <td><input type="text" id="age"></td>
+                    </tr>
+                    <tr>
+                        <th>Gender</th>
+                        <td>
+                            <input type="radio" value="male" id="male" name="Gender" style="width:20%">Male
+                            <input type="radio" value="female" id="female" name="Gender" style="width:20%">Female
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Course</th>
+                        <td>
+                            <select id="select">
+                                <option value="Python">Python</option>
+                                <option value="Java">Java</option>
+                                <option value="C++">C++</option>
+                                <option value="Web developer">Web Developer</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td><input type="email" id="email"></td>
+                    </tr>
+                </table>
+                <br>
+                <button class="btn" onclick="saveDetails()">Save</button>
+            </div>
+            <div class="details" id="details">
+                <table id="detailsTable" class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Course</th>
+                            <th>E-mail</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </center>
+    <script>
+        function saveDetails() {
+            var name = document.getElementById('name').value;
+            var age = document.getElementById('age').value;
+            var gender = document.querySelector('input[name="Gender"]:checked') ? document.querySelector('input[name="Gender"]:checked').value : '';
+            var course = document.getElementById('select').value;
+            var email = document.getElementById('email').value;
+
+            var detailsTable = document.getElementById('detailsTable');
+            var detailsTableBody = detailsTable.getElementsByTagName('tbody')[0];
+            var newRow = detailsTableBody.insertRow();
+
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
+            var cell5 = newRow.insertCell(4);
+            var cell6 = newRow.insertCell(5);
+
+            cell1.innerHTML = name;
+            cell2.innerHTML = age;
+            cell3.innerHTML = gender;
+            cell4.innerHTML = course;
+            cell5.innerHTML = email;
+            cell6.innerHTML = `<button onclick="deleteRow(this)">Delete</button>`;
+
+            // Show the table if it was hidden
+            detailsTable.style.display = 'table';
+        }
+
+        function deleteRow(button) {
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+    </script>
+</body>
+</html>
